@@ -45,7 +45,7 @@ export const pieces: Piece[] = [
   ],
   [
     "Konstantina Boua",
-    'Particles of Memory – An Audiovisual Flow"',
+    "Particles of Memory – An Audiovisual Flow",
     "particlesMemory_Boua_Konstantina.png",
   ],
   ["Elena Anagnostaki", "Pixelworks", "Elena Anagnostaki Pixelworks.jpg"],
