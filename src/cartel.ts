@@ -6,7 +6,7 @@ export function cartelTemplate(
 ) {
   return `
   <figure class="cartel" data-url="art/${idx}/index.html">
-    <img src="/covers/${cover}" alt="" />
+    <img src="covers/${cover}" alt="" />
     <figcaption>
       <div>${title}</div>
       <div>by ${artist}</div>
