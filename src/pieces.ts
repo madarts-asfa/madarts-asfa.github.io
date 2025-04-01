@@ -2,8 +2,8 @@ export type Piece = [string, string, string] | null;
 export const pieces: Piece[] = [
   null,
   null,
-  ["Rafail Tsakmakis", "1.ShapeHole Symphony", "1_Rafail_Tsakmakis.png"],
-  ["Rafail Tsakmakis", "2.Cosmic Tunel", "2_Rafail_Tsakmakis.png"],
+  ["Rafail Tsakmakis", "ShapeHole Symphony", "1_Rafail_Tsakmakis.png"],
+  ["Rafail Tsakmakis", "Cosmic Tunel", "2_Rafail_Tsakmakis.png"],
   [
     "Dialekti Valsamou-Stanislawski",
     "Some assembly required",
@@ -21,17 +21,17 @@ export const pieces: Piece[] = [
   ],
   [
     "Gina Stavropoulou",
-    '"Endless Inter-Connection"',
+    "Endless Inter-Connection",
     "1_Gina Stavropoulou_Endless Inter - Connection.png",
   ],
   [
     "Gina Stavropoulou",
-    '"Scratch Desire"',
+    "Scratch Desire",
     "2_Gina Stavropoulou_Scratch Desire.png",
   ],
   [
     "Gina Stavropoulou",
-    '"Techno-Organic"',
+    "Techno-Organic",
     "3_Gina Stavropoulou_Techno Organic.png",
   ],
   ["Semina Milarokosta ", " Avatar", ""],
@@ -40,7 +40,7 @@ export const pieces: Piece[] = [
   ["Stergios Samsakis", "Camera Illusion", "3. Stergios Samsakis.png"],
   [
     "Konstantina Boua",
-    '"Resonant Dunes" – An Audio-Driven Digital Landscape',
+    "Resonant Dunes – An Audio-Driven Digital Landscape",
     "1.resonantDunes_Boua_Konstantina.png",
   ],
   [
