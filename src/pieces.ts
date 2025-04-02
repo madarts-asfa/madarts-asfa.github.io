@@ -34,7 +34,7 @@ export const pieces: Piece[] = [
     "Techno-Organic",
     "3_Gina Stavropoulou_Techno Organic.png",
   ],
-  ["Semina Milarokosta ", " Avatar", ""],
+  ["Semina Milarokosta ", " Avatar", "avatar-semina.png"],
   ["Stergios Samsakis", "Eternal Creation", "1.Stergios Samsakis.png"],
   ["Stergios Samsakis", "Voice Circle", "2.Strgios Samsakis.png"],
   ["Stergios Samsakis", "Camera Illusion", "3. Stergios Samsakis.png"],
