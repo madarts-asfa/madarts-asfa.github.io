@@ -2,5 +2,5 @@ import type { UserConfig } from "vite";
 
 export default {
   // ...
-  base: "/psimiti-kiosk/",
+  // base: "/psimiti-kiosk/",
 } satisfies UserConfig;
