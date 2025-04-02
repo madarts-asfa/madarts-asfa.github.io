@@ -23,6 +23,11 @@ iframe {
   border: 0;
 }
 
+a,
+a:visited {
+  color: white;
+}
+
 #p5-canvas {
   position: fixed;
   top: 0;
@@ -46,8 +51,8 @@ iframe {
   margin: auto;
   padding: 0.5rem;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 2rem;
+  grid-template-rows: repeat(4, 1fr) min-content;
+  gap: 1rem;
   width: 100%;
   height: 100%;
 
@@ -93,7 +98,7 @@ iframe {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     text-align: left;
     margin: auto;
     color: white;
@@ -111,6 +116,15 @@ iframe {
     max-width: revert;
     font-size: 1rem;
     font-weight: 700;
+  }
+
+  .credits {
+    grid-column: 2 / 5;
+    background-color: black;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    text-align: center;
   }
 }
 
