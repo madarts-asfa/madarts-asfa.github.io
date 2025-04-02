@@ -441,7 +441,7 @@ function draw() {
 
 function keyPressed() {
   if (key === "F" || key === "f") {
-    fullscreen(!fullscreen());
+    // fullscreen(!fullscreen());
   }
 }
 

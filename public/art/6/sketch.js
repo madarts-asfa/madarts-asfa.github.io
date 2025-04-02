@@ -350,7 +350,7 @@ function keyPressed() {
   if (key === "h" || key === "H") {
     helpVisible = !helpVisible;
   } else if (key === "f" || key === "F") {
-    fullscreen(!fullscreen());
+    // fullscreen(!fullscreen());
   } else if (key === "r" || key === "R") {
     resetCanvas();
   } else if (keyCode === BACKSPACE || keyCode === DELETE) {
@@ -379,7 +379,7 @@ function windowResized() {
 // --- HELPER DRAWING FUNCTIONS ---
 function drawInitialMessage() {
   // Message at the bottom.
-  let msg = "Watch or play. H for help. F for Fullscreen. R to reset.";
+  let msg = "Watch or play. H for help. R to reset.";
   textFont("Arial");
   textStyle(BOLD);
   textSize(16);
@@ -421,7 +421,7 @@ function drawHelpMenu() {
       label: "Plus Sign: ",
       text: "Click plus sign (upper left) to add a piece; hold >3 sec to spawn repeatedly",
     },
-    { label: "F: ", text: "Toggle Fullscreen" },
+    // { label: "F: ", text: "Toggle Fullscreen" },
     { label: "H: ", text: "Show/Hide Help" },
     { label: "R: ", text: "Reset canvas" },
     { label: "Music: ", text: "Sequoia by SalmonLikeTheFish" },
