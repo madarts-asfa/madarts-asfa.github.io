@@ -12,12 +12,12 @@ export const pieces: Piece[] = [
   [
     "Dialekti Valsamou-Stanislawski",
     "The empathy automaton",
-    "valsamou_empathy-automaton.png",
+    "valsamou_empathy-automaton.jpg",
   ],
   [
     "Dialekti Valsamou-Stanislawski",
     "Messy, but make it pleasing",
-    "valsamou_messy-but-pleasing.png",
+    "valsamou_messy-but-pleasing.jpg",
   ],
   [
     "Gina Stavropoulou",
@@ -32,7 +32,7 @@ export const pieces: Piece[] = [
   [
     "Gina Stavropoulou",
     "Techno-Organic",
-    "3_Gina Stavropoulou_Techno Organic.png",
+    "3_Gina Stavropoulou_Techno Organic.jpg",
   ],
   ["Semina Milarokosta ", " Avatar", "avatar-semina.png"],
   ["Stergios Samsakis", "Eternal Creation", "1.Stergios Samsakis.png"],
