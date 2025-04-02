@@ -429,7 +429,7 @@ function draw() {
   }
 
   // Draw the video in the upper right corner (200px wide, 150px high)
-  image(video, width - 200, 0, 200, 150);
+  image(video, 0, 0, 100, 75);
 
   // Check if there's no detection (all expressions at 0) for over 60 seconds.
   if (!detectionActive && millis() - lastDetectionTime > 60000) {
