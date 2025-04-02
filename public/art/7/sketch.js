@@ -280,7 +280,7 @@ function resetEverything() {
 
 function draw() {
   // For the first 10 seconds, show waiting text on soft pink background.
-  if (millis() - startTime < 10000) {
+  if (millis() - startTime < 5000) {
     background(bgColors.neutral);
     fill(0);
     textAlign(CENTER, CENTER);
