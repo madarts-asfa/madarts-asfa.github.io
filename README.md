@@ -7,5 +7,7 @@ MIT-License
 
 ### Public/art directory ###
 All works copyright of their respective creators. 
+
 All rights reserved, unless otherwise clearly stated. 
+
 See specific mentions in each subdirectory/and or ask for more information. 
