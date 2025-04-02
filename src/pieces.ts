@@ -1,7 +1,7 @@
-export type Piece = [string, string, string];
+export type Piece = [string, string, string] | null;
 export const pieces: Piece[] = [
-  ["Polychronopoulos Ioannis", "Shifting Realities", "polychronopoulos3.png"],
-  ["Polychronopoulos Ioannis", "Fragmented Movements", "polychronopoulos.png"],
+  null,
+  null,
   ["Rafail Tsakmakis", "1.ShapeHole Symphony", "1_Rafail_Tsakmakis.png"],
   ["Rafail Tsakmakis", "2.Cosmic Tunel", "2_Rafail_Tsakmakis.png"],
   [

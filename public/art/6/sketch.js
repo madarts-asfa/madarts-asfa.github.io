@@ -1,12 +1,14 @@
 // === GLOBAL VARIABLES ===
-let imgArray = [];     // All images loaded from assets
-let pieces = [];       // Puzzle pieces on screen
+let imgArray = []; // All images loaded from assets
+let pieces = []; // Puzzle pieces on screen
 let selectedPiece = null;
 let dragMode = "none"; // "move" or "rotate"
-let offsetX = 0, offsetY = 0;
-let initialMouseAngle = 0, initialRotation = 0;
-let pressX, pressY;    // For detecting click vs. drag
-let dragged = false;   // Flag for drag detection
+let offsetX = 0,
+  offsetY = 0;
+let initialMouseAngle = 0,
+  initialRotation = 0;
+let pressX, pressY; // For detecting click vs. drag
+let dragged = false; // Flag for drag detection
 
 // Flags for help & initial message
 let helpVisible = false;
@@ -17,7 +19,7 @@ let plusSignPressed = false;
 let plusSignStartTime = 0;
 let lastSpawnTime = 0;
 const plusArea = { x1: 10, y1: 10, x2: 50, y2: 50 }; // bounds for plus sign
-let spawnIndex;  // Next image index for extra pieces
+let spawnIndex; // Next image index for extra pieces
 
 // Sound
 let bgSound;
@@ -36,16 +38,17 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   imageMode(CENTER);
-  
+
   resetCanvas(); // Build initial pieces
-  
+
   // Request fullscreen by default.
-  fullscreen(true);
-  
+
   bgSound.loop();
-  
+
   // Show initial instructions for 6 seconds.
-  setTimeout(() => { showInitialMessage = false; }, 6000);
+  setTimeout(() => {
+    showInitialMessage = false;
+  }, 6000);
 }
 
 // Reset the canvas to the initial state.
@@ -62,13 +65,14 @@ function resetCanvas() {
 function draw() {
   // Plain light grey background.
   background(230);
-  
+
   // --- Repulsion: Make pieces avoid crowding ---
   let separationThreshold = 100;
   for (let i = 0; i < pieces.length; i++) {
     let p = pieces[i];
     if (p === selectedPiece) continue;
-    let forceX = 0, forceY = 0;
+    let forceX = 0,
+      forceY = 0;
     for (let j = 0; j < pieces.length; j++) {
       if (i === j) continue;
       let other = pieces[j];
@@ -90,26 +94,42 @@ function draw() {
       p.vx += forceX;
       p.vy += forceY;
     } else {
-      if (p.swimVX === undefined) { p.swimVX = 0; p.swimVY = 0; }
+      if (p.swimVX === undefined) {
+        p.swimVX = 0;
+        p.swimVY = 0;
+      }
       p.swimVX += forceX;
       p.swimVY += forceY;
       p.swimVX = constrain(p.swimVX, -1, 1);
       p.swimVY = constrain(p.swimVY, -1, 1);
     }
   }
-  
+
   // --- Update & Display Pieces ---
   for (let piece of pieces) {
     if (piece.vx !== undefined && piece.vy !== undefined) {
       piece.x += piece.vx;
       piece.y += piece.vy;
-      if (piece.x < piece.halfWidth) { piece.x = piece.halfWidth; piece.vx = abs(piece.vx); }
-      else if (piece.x > width - piece.halfWidth) { piece.x = width - piece.halfWidth; piece.vx = -abs(piece.vx); }
-      if (piece.y < piece.halfHeight) { piece.y = piece.halfHeight; piece.vy = abs(piece.vy); }
-      else if (piece.y > height - piece.halfHeight) { piece.y = height - piece.halfHeight; piece.vy = -abs(piece.vy); }
-      piece.vx *= 0.90;
-      piece.vy *= 0.90;
-      if (abs(piece.vx) < 0.1 && abs(piece.vy) < 0.1) { delete piece.vx; delete piece.vy; }
+      if (piece.x < piece.halfWidth) {
+        piece.x = piece.halfWidth;
+        piece.vx = abs(piece.vx);
+      } else if (piece.x > width - piece.halfWidth) {
+        piece.x = width - piece.halfWidth;
+        piece.vx = -abs(piece.vx);
+      }
+      if (piece.y < piece.halfHeight) {
+        piece.y = piece.halfHeight;
+        piece.vy = abs(piece.vy);
+      } else if (piece.y > height - piece.halfHeight) {
+        piece.y = height - piece.halfHeight;
+        piece.vy = -abs(piece.vy);
+      }
+      piece.vx *= 0.9;
+      piece.vy *= 0.9;
+      if (abs(piece.vx) < 0.1 && abs(piece.vy) < 0.1) {
+        delete piece.vx;
+        delete piece.vy;
+      }
     } else if (!piece.activated) {
       if (piece.swimVX === undefined) {
         piece.swimVX = random(-0.5, 0.5);
@@ -127,7 +147,11 @@ function draw() {
       }
       if (piece.y < piece.halfHeight || piece.y > height - piece.halfHeight) {
         piece.swimVY *= -1;
-        piece.y = constrain(piece.y, piece.halfHeight, height - piece.halfHeight);
+        piece.y = constrain(
+          piece.y,
+          piece.halfHeight,
+          height - piece.halfHeight
+        );
       }
       piece.noiseX += 0.01;
       piece.noiseY += 0.01;
@@ -135,22 +159,28 @@ function draw() {
     }
     piece.display();
   }
-  
+
   // --- Draw the Plus Sign (upper‑left) ---
   drawPlusSign();
-  
+
   // --- Spawn New Piece from Plus Sign ---
   if (plusSignPressed) {
-    if (millis() - plusSignStartTime >= 3000 && millis() - lastSpawnTime >= 500) {
+    if (
+      millis() - plusSignStartTime >= 3000 &&
+      millis() - lastSpawnTime >= 500
+    ) {
       spawnNewPiece();
       lastSpawnTime = millis();
     }
   }
-  
+
   // --- Draw Overlays ---
-  if (helpVisible) { drawHelpMenu(); }
-  else if (showInitialMessage) { drawInitialMessage(); }
-  
+  if (helpVisible) {
+    drawHelpMenu();
+  } else if (showInitialMessage) {
+    drawInitialMessage();
+  }
+
   drawSoundOverlay();
   drawHelpButton();
 }
@@ -177,7 +207,7 @@ function overSoundOverlay(mx, my) {
   let y = height - 40;
   let w = 120;
   let h = 30;
-  return (mx >= x && mx <= x + w && my >= y && my <= y + h);
+  return mx >= x && mx <= x + w && my >= y && my <= y + h;
 }
 
 // --- HELP BUTTON FUNCTIONS ---
@@ -201,7 +231,7 @@ function overHelpButton(mx, my) {
   let y = height - 40;
   let w = 80;
   let h = 30;
-  return (mx >= x && mx <= x + w && my >= y && my <= y + h);
+  return mx >= x && mx <= x + w && my >= y && my <= y + h;
 }
 
 // --- MOUSE & TOUCH INTERACTION ---
@@ -218,7 +248,7 @@ function mousePressed() {
     helpVisible = !helpVisible;
     return;
   }
-  
+
   if (mouseButton === LEFT) {
     if (overPlusSign(mouseX, mouseY)) {
       plusSignPressed = true;
@@ -253,12 +283,14 @@ function mousePressed() {
       }
       if (!found && selectedPiece) {
         dragMode = "rotate";
-        initialMouseAngle = atan2(mouseY - selectedPiece.y, mouseX - selectedPiece.x);
+        initialMouseAngle = atan2(
+          mouseY - selectedPiece.y,
+          mouseX - selectedPiece.x
+        );
         initialRotation = selectedPiece.rotation;
       }
     }
-  }
-  else if (mouseButton === RIGHT) {
+  } else if (mouseButton === RIGHT) {
     if (selectedPiece) {
       selectedPiece.activated = false;
       selectedPiece.tintIndex = 7; // Reset tint (state 7 is our "base" state)
@@ -274,16 +306,26 @@ function mouseDragged() {
       selectedPiece.x = mouseX + offsetX;
       selectedPiece.y = mouseY + offsetY;
     } else if (dragMode === "rotate") {
-      let currentAngle = atan2(mouseY - selectedPiece.y, mouseX - selectedPiece.x);
-      selectedPiece.rotation = initialRotation + (currentAngle - initialMouseAngle);
+      let currentAngle = atan2(
+        mouseY - selectedPiece.y,
+        mouseX - selectedPiece.x
+      );
+      selectedPiece.rotation =
+        initialRotation + (currentAngle - initialMouseAngle);
     }
   }
 }
 
 function mouseReleased() {
   if (mouseButton === LEFT) {
-    if (plusSignPressed) { plusSignPressed = false; }
-    if (!dragged && selectedPiece && selectedPiece.containsPoint(pressX, pressY)) {
+    if (plusSignPressed) {
+      plusSignPressed = false;
+    }
+    if (
+      !dragged &&
+      selectedPiece &&
+      selectedPiece.containsPoint(pressX, pressY)
+    ) {
       if (selectedPiece.justSelected) {
         selectedPiece.justSelected = false;
       } else {
@@ -305,11 +347,11 @@ function mouseWheel(event) {
 
 // --- KEYBOARD & WINDOW RESIZE ---
 function keyPressed() {
-  if (key === 'h' || key === 'H') {
+  if (key === "h" || key === "H") {
     helpVisible = !helpVisible;
-  } else if (key === 'f' || key === 'F') {
+  } else if (key === "f" || key === "F") {
     fullscreen(!fullscreen());
-  } else if (key === 'r' || key === 'R') {
+  } else if (key === "r" || key === "R") {
     resetCanvas();
   } else if (keyCode === BACKSPACE || keyCode === DELETE) {
     if (selectedPiece) {
@@ -352,7 +394,7 @@ function drawInitialMessage() {
   fill(240);
   textAlign(CENTER, CENTER);
   text(msg, width / 2, height - 50);
-  
+
   // Title message in the middle.
   let titleMsg = "Some Assembly Required";
   textSize(32);
@@ -365,17 +407,26 @@ function drawHelpMenu() {
   let helpLines = [
     { label: "Move: ", text: "Left click & drag inside a piece" },
     { label: "Rotate: ", text: "Left click & drag outside a piece" },
-    { label: "Tint: ", text: "After selection, subsequent clicks cycle 4 red, 4 blue & 1 reset" },
+    {
+      label: "Tint: ",
+      text: "After selection, subsequent clicks cycle 4 red, 4 blue & 1 reset",
+    },
     { label: "Scale: ", text: "Scroll over a piece" },
     { label: "Free: ", text: "Right click (or double-finger tap) to release" },
-    { label: "Delete: ", text: "Press Backspace/Delete to remove selected piece" },
-    { label: "Plus Sign: ", text: "Click plus sign (upper left) to add a piece; hold >3 sec to spawn repeatedly" },
+    {
+      label: "Delete: ",
+      text: "Press Backspace/Delete to remove selected piece",
+    },
+    {
+      label: "Plus Sign: ",
+      text: "Click plus sign (upper left) to add a piece; hold >3 sec to spawn repeatedly",
+    },
     { label: "F: ", text: "Toggle Fullscreen" },
     { label: "H: ", text: "Show/Hide Help" },
     { label: "R: ", text: "Reset canvas" },
-    { label: "Music: ", text: "Sequoia by SalmonLikeTheFish" }
+    { label: "Music: ", text: "Sequoia by SalmonLikeTheFish" },
   ];
-  
+
   let padding = 20;
   let lineHeight = 30;
   textFont("Arial");
@@ -389,12 +440,12 @@ function drawHelpMenu() {
   }
   let boxW = maxLineWidth + padding * 2;
   let boxH = helpLines.length * lineHeight + padding * 2;
-  
+
   fill(30, 30, 30, 204);
   noStroke();
   rectMode(CENTER);
   rect(width / 2, height / 2, boxW, boxH, 10);
-  
+
   let currentY = height / 2 - boxH / 2 + padding;
   for (let line of helpLines) {
     textStyle(BOLD);
@@ -402,22 +453,30 @@ function drawHelpMenu() {
     textAlign(LEFT, CENTER);
     text(line.label, width / 2 - boxW / 2 + padding, currentY);
     textStyle(NORMAL);
-    text(line.text, width / 2 - boxW / 2 + padding + textWidth(line.label + " "), currentY);
+    text(
+      line.text,
+      width / 2 - boxW / 2 + padding + textWidth(line.label + " "),
+      currentY
+    );
     currentY += lineHeight;
   }
 }
 
 function drawPlusSign() {
-  let x = 30, y = 30, size = 40;
+  let x = 30,
+    y = 30,
+    size = 40;
   fill(100);
   noStroke();
   rectMode(CENTER);
   rect(x, y, size / 4, size);
   rect(x, y, size, size / 4);
 }
-  
+
 function overPlusSign(x, y) {
-  return (x >= plusArea.x1 && x <= plusArea.x2 && y >= plusArea.y1 && y <= plusArea.y2);
+  return (
+    x >= plusArea.x1 && x <= plusArea.x2 && y >= plusArea.y1 && y <= plusArea.y2
+  );
 }
 
 function spawnNewPiece() {
@@ -450,13 +509,13 @@ class PuzzlePiece {
     this.rotationSpeed = random(-0.005, 0.005);
     this.justSelected = false;
   }
-  
+
   display() {
     push();
     translate(this.x, this.y);
     rotate(this.rotation);
     scale(this.scale);
-    
+
     // --- Selected Piece Outline (Yellow Halo) ---
     if (this === selectedPiece) {
       push();
@@ -472,7 +531,7 @@ class PuzzlePiece {
       }
       pop();
     }
-    
+
     // --- Tint & Opacity ---
     if (!this.activated) {
       tint(255, 204);
@@ -496,7 +555,7 @@ class PuzzlePiece {
     }
     pop();
   }
-  
+
   containsPoint(mx, my) {
     let dx = mx - this.x;
     let dy = my - this.y;
@@ -505,8 +564,12 @@ class PuzzlePiece {
     let localY = dx * sin(angle) + dy * cos(angle);
     localX /= this.scale;
     localY /= this.scale;
-    if (localX < -this.halfWidth || localX >= this.halfWidth ||
-        localY < -this.halfHeight || localY >= this.halfHeight) {
+    if (
+      localX < -this.halfWidth ||
+      localX >= this.halfWidth ||
+      localY < -this.halfHeight ||
+      localY >= this.halfHeight
+    ) {
       return false;
     }
     let imgX = localX + this.halfWidth;
