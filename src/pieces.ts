@@ -1,7 +1,7 @@
 export type Piece = [string, string, string] | null;
 export const pieces: Piece[] = [
-  null,
-  null,
+  ["George Tzimas", "Gazing Circles", "tzimas-vlepw-kyklous.png"],
+  ["George Tzimas", "Freedom", "tzimas-freedom.png"],
   ["Rafail Tsakmakis", "ShapeHole Symphony", "1_Rafail_Tsakmakis.png"],
   ["Rafail Tsakmakis", "Cosmic Tunel", "2_Rafail_Tsakmakis.png"],
   [
