@@ -56,43 +56,6 @@ a:visited {
   width: 100%;
   height: 100%;
 
-  .cartel {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    margin: auto;
-    color: black;
-    width: 100%;
-    height: 100%;
-    border: 0.5rem solid black;
-    border-radius: 1rem;
-    background-color: white;
-    transition: transform 300ms;
-    overflow: hidden;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    img {
-      height: 100%;
-      width: auto;
-      object-fit: cover;
-    }
-
-    figcaption {
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-size: 0.8rem;
-      background-color: rgba(255, 255, 255, 0.87);
-      width: 100%;
-    }
-  }
-
   #school-infos {
     position: relative;
     display: flex;
@@ -117,14 +80,49 @@ a:visited {
     font-size: 1rem;
     font-weight: 700;
   }
+}
+.credits {
+  grid-column: 2 / 5;
+  background-color: black;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.cartel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: auto;
+  color: black;
+  width: 100%;
+  height: 100%;
+  border: 0.5rem solid black;
+  border-radius: 1rem;
+  background-color: white;
+  transition: transform 300ms;
+  overflow: hidden;
 
-  .credits {
-    grid-column: 2 / 5;
-    background-color: black;
-    border-radius: 0.5rem;
-    padding: 0.2rem 0.5rem;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+  }
+
+  figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
     font-size: 0.8rem;
-    text-align: center;
+    background-color: rgba(255, 255, 255, 0.87);
+    width: 100%;
   }
 }
 
@@ -185,4 +183,50 @@ a:visited {
 
 :fullscreen #enter-fullscreen {
   opacity: 0;
+}
+
+.about {
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  grid-template-columns: 1fr 1fr;
+  margin: auto;
+  padding: 0.5rem;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+
+  .cartel {
+    text-align: left;
+    padding: 0.5rem;
+    overflow-y: scroll;
+
+    p {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+
+    ul {
+      list-style-type: circle;
+      list-style-position: inside;
+    }
+    li {
+      padding-left: 0.3rem;
+    }
+  }
+
+  .cartel:hover {
+    transform: none;
+  }
+
+  .back {
+    background-color: black;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .credits {
+    grid-column: 2 / -1;
+  }
 }
