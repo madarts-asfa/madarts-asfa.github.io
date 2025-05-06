@@ -216,13 +216,13 @@ function setup() {
     withExpressions: true,
     withDescriptors: true,
     minConfidence: 0.5,
-    Mobilenetv1Model: `http://${document.location.host}/ssd_mobilenetv1_model-weights_manifest.json`,
+    Mobilenetv1Model: `https://${document.location.host}/ssd_mobilenetv1_model-weights_manifest.json`,
     //Mobilenetv1Model:
     // "https://raw.githubusercontent.com/ml5js/ml5-data-and-models/face-api/models/faceapi/ssd_mobilenetv1_model-weights_manifest.json",
-    FaceLandmarkModel: `http://${document.location.host}/face_landmark_68_model-weights_manifest.json`,
-    FaceLandmark68TinyNet: `http://${document.location.host}/face_landmark_68_tiny_model-weights_manifest.json`,
-    FaceRecognitionModel: `http://${document.location.host}/face_recognition_model-weights_manifest.json`,
-    FaceExpressionModel: `http://${document.location.host}/face_expression_model-weights_manifest.json`,
+    FaceLandmarkModel: `https://${document.location.host}/face_landmark_68_model-weights_manifest.json`,
+    FaceLandmark68TinyNet: `https://${document.location.host}/face_landmark_68_tiny_model-weights_manifest.json`,
+    FaceRecognitionModel: `https://${document.location.host}/face_recognition_model-weights_manifest.json`,
+    FaceExpressionModel: `https://${document.location.host}/face_expression_model-weights_manifest.json`,
   };
 
   faceApi = ml5.faceApi(video, faceOptions, faceReady);
@@ -288,7 +288,7 @@ function draw() {
     text(
       "The Empathy Automaton Feels What You Feel\nYour Expressive Emotions Fill It Up With Digital Sensations",
       width / 2,
-      height / 2
+      height / 2,
     );
     return;
   }
